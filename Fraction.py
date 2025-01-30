@@ -47,7 +47,8 @@ class Fraction(object):
     @denominator.setter
     def denominator(self, new_denominator):
         gcd = Fraction.gcd(new_denominator, self.numerator)
-        self._denominator = new_denominator // gcd
+        # denominator should ALWAYS be positive
+        self._denominator = abs(new_denominator) // gcd
         self._numerator //= gcd
 
     def get_numerator(self):
