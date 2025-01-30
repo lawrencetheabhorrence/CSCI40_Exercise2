@@ -47,6 +47,8 @@ class Fraction(object):
 
     @denominator.setter
     def denominator(self, new_denominator):
+        if new_denominator == 0:
+            raise ZeroDivisionError("Denominator must not be zero")
         sign = 1 if new_denominator * self._numerator >= 0 else -1
         gcd = Fraction.gcd(new_denominator, self.numerator)
         self._denominator = abs(new_denominator) // gcd
