@@ -3,8 +3,6 @@ class Fraction(object):
     def __init__(self, numerator=0, denominator=1):
         if denominator == 0:
             raise ZeroDivisionError("Denominator should not be zero.")
-        if not isinstance(denominator, int):
-            raise ValueError("Denominator should be an integer")
 
         # initial values of fraction just to avoid errors
         # with setters
@@ -13,15 +11,16 @@ class Fraction(object):
 
         if isinstance(numerator, str):
             numbers = numerator.split("/")
-            if len(numbers) > 2 or len(numbers) < 1:
-                raise ValueError("Invalid string passed")
+            if len(numbers) > 0 and len(numbers) <= 2:
+                try:
+                    self.numerator = int(numbers[0])
+                    # denominator is passed
+                    if len(numbers) == 2:
+                        self.denominator = int(numbers[1])
+                except ValueError:
+                    print("Invalid string passed, fraction will be set to 0")
 
-            self.numerator = int(numbers[0])
-            # denominator is passed
-            if len(numbers) == 2:
-                self.denominator = int(numbers[1])
-
-        if isinstance(numerator, int):
+        if isinstance(numerator, int) and isinstance(denominator, int):
             self.numerator = numerator
             self.denominator = denominator
 
