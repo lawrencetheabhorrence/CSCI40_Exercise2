@@ -15,6 +15,7 @@ class Fraction(object):
             self.numerator = numerator
             self.denominator = denominator
 
+            
     @staticmethod
     def gcd(a, b):
         if not (isinstance(a, int) and isinstance(b, int)):
@@ -31,13 +32,23 @@ class Fraction(object):
             return Fraction.gcd(b, a % b)
 
     def get_numerator(self):
-        # TODO
-        pass
+
+        gcd = self.gcd(self.numerator,self.denominator)
+        lowest_numerator = self.numerator // gcd
+        return str(lowest_numerator)
+
 
     def get_denominator(self):
-        # TODO
-        pass
+        gcd = self.gcd(self.numerator,self.denominator)
+        lowest_denominator = self.denominator // gcd
+        return str(lowest_denominator)
 
     def get_fraction(self):
-        # TODO
-        pass
+        numerator = int(self.get_numerator())
+        denominator = int(self.get_denominator())
+        if denominator == 1:
+            return str(numerator)
+        if denominator < 0:
+            numerator = numerator*-1
+            denominator = denominator*-1
+        return str(numerator) + "/" + str(denominator)
