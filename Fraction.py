@@ -15,11 +15,6 @@ class Fraction(object):
             self.numerator = numerator
             self.denominator = denominator
 
-        # Convert to lowest terms
-        gcd = Fraction.gcd(numerator, denominator)
-        self.numerator /= gcd
-        self.denominator /= gcd
-
     @staticmethod
     def gcd(a, b):
         if not (isinstance(a, int) and isinstance(b, int)):
