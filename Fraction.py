@@ -6,6 +6,11 @@ class Fraction(object):
         if not isinstance(denominator, int):
             raise ValueError("Denominator should be an integer")
 
+        # initial values of fraction just to avoid errors
+        # with setters
+        self._numerator = 0
+        self._denominator = 1
+
         if isinstance(numerator, str):
             num, denom = numerator.split("/")
             self.numerator = int(num)
