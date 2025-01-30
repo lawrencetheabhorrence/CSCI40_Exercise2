@@ -36,8 +36,9 @@ class Fraction(object):
 
     @numerator.setter
     def numerator(self, new_numerator):
+        sign = 1 if new_numerator * self.denominator >= 0 else -1
         gcd = Fraction.gcd(new_numerator, self.denominator)
-        self._numerator = new_numerator // gcd
+        self._numerator = (sign * abs(new_numerator)) // gcd
         self._denominator //= gcd
 
     @property
@@ -46,10 +47,11 @@ class Fraction(object):
 
     @denominator.setter
     def denominator(self, new_denominator):
+        sign = 1 if new_denominator * self._numerator >= 0 else -1
         gcd = Fraction.gcd(new_denominator, self.numerator)
-        # denominator should ALWAYS be positive
         self._denominator = abs(new_denominator) // gcd
-        self._numerator //= gcd
+        # only numerator can be negative
+        self._numerator = (sign * abs(self._numerator)) // gcd
 
     def get_numerator(self):
 
