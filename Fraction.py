@@ -36,10 +36,17 @@ class Fraction(object):
 
     @numerator.setter
     def numerator(self, new_numerator):
-        sign = 1 if new_numerator * self.denominator >= 0 else -1
-        gcd = Fraction.gcd(new_numerator, self.denominator)
-        self._numerator = (sign * abs(new_numerator)) // gcd
-        self._denominator //= gcd
+        if new_numerator == 0:
+            self._numerator = 0
+            # denominator must be zero
+            # to avoid wrong GCD
+            # when setting a non-zero numerator again
+            self._denominator = 1
+        else:
+            sign = 1 if new_numerator * self.denominator >= 0 else -1
+            gcd = Fraction.gcd(new_numerator, self.denominator)
+            self._numerator = (sign * abs(new_numerator)) // gcd
+            self._denominator //= gcd
 
     @property
     def denominator(self):
