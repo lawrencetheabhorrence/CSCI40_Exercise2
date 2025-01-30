@@ -2,7 +2,7 @@ class Fraction(object):
 
     def __init__(self, numerator=0, denominator=1):
         if denominator == 0:
-            raise ValueError("NO DIVIDING BY ZERO!!!")
+            raise ZeroDivisionError("Denominator should not be zero.")
         if not isinstance(denominator, int):
             raise ValueError("Denominator should be an integer")
 
