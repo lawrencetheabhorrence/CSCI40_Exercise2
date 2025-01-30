@@ -1,7 +1,8 @@
 class Fraction(object):
 
     def __init__(self, numerator=0, denominator=1):
-        #TODO
+        if denominator == 0:
+            raise ValueError("NO DIVIDING BY ZERO!!!")
         pass
 
     def gcd(a, b):
