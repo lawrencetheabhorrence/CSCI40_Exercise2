@@ -30,6 +30,16 @@ class Fraction(object):
         while a % b != 0:
             return Fraction.gcd(b, a % b)
 
+    @property
+    def numerator(self):
+        return self._numerator
+
+    @numerator.setter
+    def numerator(self, new_numerator):
+        gcd = Fraction.gcd(new_numerator, self.denominator)
+        self._numerator = new_numerator // gcd
+        self.denominator //= gcd
+
     def get_numerator(self):
 
         gcd = self.gcd(self.numerator, self.denominator)
