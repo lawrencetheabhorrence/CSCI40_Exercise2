@@ -5,6 +5,11 @@ class Fraction(object):
             raise ValueError("NO DIVIDING BY ZERO!!!")
         if not isinstance(denominator, int):
             raise ValueError("Denominator should be an integer")
+        
+        if isinstance(numerator, str):
+            num, denom = numerator.split('/')
+            self.numerator = int(num)
+            self.denominator = int(denom)
 
     def gcd(a, b):
         #TODO
