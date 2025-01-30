@@ -5,6 +5,13 @@ class Fraction(object):
             raise ValueError("NO DIVIDING BY ZERO!!!")
         pass
 
+        if isinstance(numerator, int):
+            self.numerator = numerator
+            self.denominator = denominator
+            
+
+
+
     def gcd(a, b):
         #TODO
         pass
