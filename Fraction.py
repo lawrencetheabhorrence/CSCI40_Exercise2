@@ -18,6 +18,16 @@ class Fraction(object):
         self._numerator = new_numerator // gcd
         self._denominator //= gcd
 
+    @property
+    def denominator(self):
+        return self._denominator
+
+    @denominator.setter
+    def denominator(self, new_denominator):
+        gcd = Fraction.gcd(new_denominator, self.numerator)
+        self._denominator = new_denominator // gcd
+        self._denominator //= gcd
+
     def get_numerator(self):
         # TODO
         pass
@@ -29,4 +39,3 @@ class Fraction(object):
     def get_fraction(self):
         # TODO
         pass
-
