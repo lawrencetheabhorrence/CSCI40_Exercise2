@@ -11,6 +11,13 @@ class Fraction(object):
             self.numerator = int(num)
             self.denominator = int(denom)
 
+        if isinstance(numerator, int):
+            self.numerator = numerator
+            self.denominator = denominator
+            
+
+
+
     def gcd(a, b):
         #TODO
         pass
