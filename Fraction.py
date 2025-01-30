@@ -15,12 +15,20 @@ class Fraction(object):
             self.numerator = numerator
             self.denominator = denominator
             
-
-
-
+    @staticmethod
     def gcd(a, b):
-        #TODO
-        pass
+        if not (isinstance(a, int) and isinstance(b, int)):
+            raise TypeError("Both inputs should be integers.")
+        if a == 0 or b == 0:
+            return 0
+        if a < b:
+            return Fraction.gcd(b, a)
+        if a < 0 or b < 0:
+            return Fraction.gcd(abs(a), abs(b))
+        if (a % b == 0):
+            return b
+        while (a % b != 0):
+            return Fraction.gcd(b, a % b)
 
     def get_numerator(self):
         #TODO
