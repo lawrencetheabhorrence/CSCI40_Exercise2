@@ -12,9 +12,14 @@ class Fraction(object):
         self._denominator = 1
 
         if isinstance(numerator, str):
-            num, denom = numerator.split("/")
-            self.numerator = int(num)
-            self.denominator = int(denom)
+            numbers = numerator.split("/")
+            if len(numbers) > 2 or len(numbers) < 1:
+                raise ValueError("Invalid string passed")
+
+            self.numerator = int(numbers[0])
+            # denominator is passed
+            if len(numbers) == 2:
+                self.denominator = int(numbers[1])
 
         if isinstance(numerator, int):
             self.numerator = numerator
