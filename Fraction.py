@@ -2,20 +2,28 @@ class Fraction(object):
 
     def __init__(self, numerator=0, denominator=1):
         if denominator == 0:
-            raise ValueError("NO DIVIDING BY ZERO!!!")
-        if not isinstance(denominator, int):
-            raise ValueError("Denominator should be an integer")
+            raise ZeroDivisionError("Denominator should not be zero.")
+
+        # initial values of fraction just to avoid errors
+        # with setters
+        self._numerator = 0
+        self._denominator = 1
 
         if isinstance(numerator, str):
-            num, denom = numerator.split("/")
-            self.numerator = int(num)
-            self.denominator = int(denom)
+            numbers = numerator.split("/")
+            if len(numbers) > 0 and len(numbers) <= 2:
+                try:
+                    self.numerator = int(numbers[0])
+                    # denominator is passed
+                    if len(numbers) == 2:
+                        self.denominator = int(numbers[1])
+                except ValueError:
+                    print("Invalid string passed, fraction will be set to 0")
 
-        if isinstance(numerator, int):
+        if isinstance(numerator, int) and isinstance(denominator, int):
             self.numerator = numerator
             self.denominator = denominator
 
-            
     @staticmethod
     def gcd(a, b):
         if not (isinstance(a, int) and isinstance(b, int)):
@@ -26,10 +34,30 @@ class Fraction(object):
             return Fraction.gcd(b, a)
         if a < 0 or b < 0:
             return Fraction.gcd(abs(a), abs(b))
-        if a % b == 0:
-            return b
-        while a % b != 0:
-            return Fraction.gcd(b, a % b)
+        while (rem := a % b) > 0:
+            a = b
+            b = rem
+        return b
+
+    @property
+    def numerator(self):
+        return self._numerator
+
+    @numerator.setter
+    def numerator(self, new_numerator):
+        gcd = Fraction.gcd(new_numerator, self.denominator)
+        self._numerator = new_numerator // gcd
+        self._denominator //= gcd
+
+    @property
+    def denominator(self):
+        return self._denominator
+
+    @denominator.setter
+    def denominator(self, new_denominator):
+        gcd = Fraction.gcd(new_denominator, self.numerator)
+        self._denominator = new_denominator // gcd
+        self._numerator //= gcd
 
     def get_numerator(self):
         return str(self._numerator)
@@ -37,6 +65,7 @@ class Fraction(object):
 
     def get_denominator(self):
         return str(self._denominator)
+
 
     def get_fraction(self):
         numerator = int(self.get_numerator())
