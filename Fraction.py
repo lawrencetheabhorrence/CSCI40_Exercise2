@@ -75,22 +75,16 @@ class Fraction(object):
             self._numerator = (sign * abs(self._numerator)) // gcd
 
     def get_numerator(self):
+        return str(self.numerator)
 
-        gcd = self.gcd(self.numerator, self.denominator)
-        lowest_numerator = self.numerator // gcd
-        return str(lowest_numerator)
 
     def get_denominator(self):
-        gcd = self.gcd(self.numerator, self.denominator)
-        lowest_denominator = self.denominator // gcd
-        return str(lowest_denominator)
+        return str(self.denominator)
+
 
     def get_fraction(self):
-        numerator = int(self.get_numerator())
-        denominator = int(self.get_denominator())
+        numerator = self.numerator
+        denominator = self.denominator
         if denominator == 1:
             return str(numerator)
-        if denominator < 0:
-            numerator = numerator * -1
-            denominator = denominator * -1
         return str(numerator) + "/" + str(denominator)
