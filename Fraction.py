@@ -25,10 +25,10 @@ class Fraction(object):
             return Fraction.gcd(b, a)
         if a < 0 or b < 0:
             return Fraction.gcd(abs(a), abs(b))
-        if a % b == 0:
-            return b
-        while a % b != 0:
-            return Fraction.gcd(b, a % b)
+        while (rem := a % b) > 0:
+            a = b
+            b = rem
+        return b
 
     @property
     def numerator(self):
