@@ -32,15 +32,15 @@ class Fraction(object):
             return Fraction.gcd(b, a % b)
 
     def get_numerator(self):
-        return str(self._numerator)
+        return str(self.numerator)
 
 
     def get_denominator(self):
-        return str(self._denominator)
+        return str(self.denominator)
 
     def get_fraction(self):
-        numerator = int(self.get_numerator())
-        denominator = int(self.get_denominator())
+        numerator = self.numerator
+        denominator = self.denominator
         if denominator == 1:
             return str(numerator)
         return str(numerator) + "/" + str(denominator)
