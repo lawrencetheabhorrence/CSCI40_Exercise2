@@ -56,11 +56,14 @@ class Fraction(object):
     def denominator(self, new_denominator):
         if new_denominator == 0:
             raise ZeroDivisionError("Denominator must not be zero")
-        sign = 1 if new_denominator * self._numerator >= 0 else -1
-        gcd = Fraction.gcd(new_denominator, self.numerator)
-        self._denominator = abs(new_denominator) // gcd
-        # only numerator can be negative
-        self._numerator = (sign * abs(self._numerator)) // gcd
+        if self.numerator == 0:
+            self._denominator = 1
+        else:
+            sign = 1 if new_denominator * self._numerator >= 0 else -1
+            gcd = Fraction.gcd(new_denominator, self.numerator)
+            self._denominator = abs(new_denominator) // gcd
+            # only numerator can be negative
+            self._numerator = (sign * abs(self._numerator)) // gcd
 
     def get_numerator(self):
 
